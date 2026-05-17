@@ -1,0 +1,497 @@
+/* ============================================================
+   IRON & CHROME — Retro Motorcycle Guide
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:      #f5f0e8;
+  --parchment:  #ede5d0;
+  --dark:       #1c1510;
+  --brown:      #3b2a1a;
+  --gold:       #b8860b;
+  --gold-light: #d4a827;
+  --rust:       #8b3a1a;
+  --ink:        #2c2218;
+  --muted:      #6b5a48;
+  --border:     #c8b89a;
+  --card-bg:    #faf7f0;
+  --alt-bg:     #f0ebe0;
+  --white:      #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ── Container ── */
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
+.site-header {
+  background: var(--dark);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.02) 2px,
+      rgba(255,255,255,0.02) 4px
+    );
+  padding: 60px 24px 50px;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center top, rgba(184,134,11,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.header-badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  padding: 4px 14px;
+  margin-bottom: 20px;
+}
+
+.site-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -1px;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.site-subtitle {
+  font-family: 'Special Elite', monospace;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  color: var(--gold-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+.header-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 22px auto;
+}
+
+.site-tagline {
+  font-style: italic;
+  color: rgba(245,240,232,0.6);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   INTRO
+   ============================================================ */
+.intro {
+  background: var(--brown);
+  color: var(--parchment);
+  padding: 50px 24px;
+  text-align: center;
+  border-bottom: 3px double var(--gold);
+}
+
+.intro .container {
+  max-width: 760px;
+}
+
+.intro p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.intro p:last-child { margin-bottom: 0; }
+.intro strong { color: var(--gold-light); }
+
+/* ============================================================
+   RATING LEGEND BAR
+   ============================================================ */
+.legend-bar {
+  background: var(--parchment);
+  border-bottom: 2px solid var(--border);
+  padding: 10px 24px;
+}
+
+.legend-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: 'Special Elite', monospace;
+}
+
+.legend-sep { color: var(--border); }
+.legend-item { white-space: nowrap; }
+
+/* ============================================================
+   STARS
+   ============================================================ */
+.star { color: var(--border); }
+.star.filled { color: var(--gold); }
+.stars .star { font-size: 1rem; }
+
+/* ============================================================
+   BIKES LIST
+   ============================================================ */
+.bikes-list {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* ============================================================
+   BIKE CARD
+   ============================================================ */
+.bike-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold);
+  box-shadow: 0 4px 24px rgba(60,35,15,0.10);
+  position: relative;
+  overflow: hidden;
+}
+
+.bike-card.alt {
+  background: var(--alt-bg);
+  border-top-color: var(--rust);
+}
+
+/* Number badge */
+.bike-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--gold);
+  color: var(--dark);
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  padding: 6px 16px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.bike-card.alt .bike-number {
+  background: var(--rust);
+  color: var(--cream);
+}
+
+/* Image */
+.bike-image-wrap {
+  margin: 0;
+  background: var(--dark);
+  overflow: hidden;
+  max-height: 420px;
+}
+
+.bike-image-wrap img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+  filter: sepia(12%) contrast(1.03);
+}
+
+.bike-card:hover .bike-image-wrap img {
+  transform: scale(1.02);
+}
+
+.bike-image-wrap figcaption {
+  background: rgba(0,0,0,0.65);
+  color: rgba(255,255,255,0.55);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  padding: 5px 14px;
+  text-align: right;
+}
+
+/* Content area */
+.bike-content {
+  padding: 36px 40px 40px;
+}
+
+/* Meta row */
+.bike-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bike-brand {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: bold;
+}
+
+.bike-dot { color: var(--border); }
+
+.bike-model {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.bike-years {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Bike name */
+.bike-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.bike-card.alt .bike-name { color: var(--rust); }
+
+/* Intro paragraph */
+.bike-intro {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 28px;
+  border-left: 3px solid var(--gold);
+  padding-left: 18px;
+  font-style: italic;
+}
+
+.bike-card.alt .bike-intro { border-left-color: var(--rust); }
+
+/* ── Spec Grid ── */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+.spec-block {
+  background: var(--card-bg);
+  padding: 14px 16px;
+}
+
+.bike-card.alt .spec-block { background: var(--alt-bg); }
+
+.spec-block h4 {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.spec-block p {
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* ── Ratings ── */
+.ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid var(--border);
+}
+
+.rating-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brown);
+  min-width: 100px;
+}
+
+.rating-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Verdict ── */
+.bike-verdict {
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.025);
+}
+
+/* ============================================================
+   COMPARISON TABLE
+   ============================================================ */
+.comparison-section {
+  background: var(--brown);
+  padding: 60px 24px;
+  border-top: 4px solid var(--gold);
+  border-bottom: 4px solid var(--gold);
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--cream);
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  min-width: 640px;
+}
+
+.compare-table th {
+  background: var(--gold);
+  color: var(--dark);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.compare-table td {
+  padding: 12px 14px;
+  color: var(--parchment);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  vertical-align: middle;
+}
+
+.compare-table tr:hover td {
+  background: rgba(255,255,255,0.05);
+}
+
+.compare-table .alt-row td {
+  background: rgba(0,0,0,0.12);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--dark);
+  color: rgba(245,240,232,0.5);
+  padding: 40px 24px;
+  text-align: center;
+  border-top: 3px solid var(--gold);
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  max-width: 600px;
+  margin: 0 auto 10px;
+  line-height: 1.65;
+}
+
+.footer-copy {
+  color: rgba(245,240,232,0.3) !important;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem !important;
+  letter-spacing: 1px;
+  margin-top: 20px !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  .bike-content { padding: 24px 20px 28px; }
+  .spec-grid { grid-template-columns: 1fr 1fr; }
+  .rating-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .rating-label { min-width: unset; }
+  .hosting-cards { grid-template-columns: 1fr; }
+  .legend-inner { font-size: 0.72rem; gap: 6px 14px; }
+}
